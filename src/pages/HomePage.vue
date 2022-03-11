@@ -1,33 +1,70 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo" class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 home p-2 m-0 flex-column bg-success">
+        <h2>SideBar</h2>
+      </div>
+      <div
+        class="
+          col-8
+          bg-light
+          d-flex
+          shadow
+          ms-5
+          mt-5
+          mb-3
+          rounded
+          posts-card
+          selectable
+        "
+        v-for="p in posts"
+        :key="p.id"
+      >
+        <Posts :posts="p" />
+      </div>
     </div>
   </div>
 </template>
 
+
+
 <script>
+import { computed, onMounted } from "@vue/runtime-core";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { postsService } from "../services/PostsService";
+import { AppState } from "../AppState";
 export default {
-  name: 'Home'
-}
+  setup() {
+    onMounted(async () => {
+      try {
+        await postsService.getAllPosts();
+      } catch (error) {
+        logger.error(error);
+        Pop.toast(error.message, "error");
+      }
+    });
+    return {
+      posts: computed(() => AppState.posts),
+    };
+  },
+};
 </script>
 
+
+
 <style scoped lang="scss">
-.home{
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-  .home-card{
-    width: 50vw;
-    > img{
+.home {
+  height: 100%;
+  margin: 0;
+
+  .home-card {
+    width: 25vw;
+    max-height: 25%;
+    > img {
       height: 200px;
       max-width: 200px;
-      width: 100%;
+
       object-fit: contain;
       object-position: center;
     }
