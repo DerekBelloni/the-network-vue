@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="row p-2 m-2 justify-content-center bg-info">
-      <div class="col-9 text-center">
-        <img class="img-fluid" :src="ads.linkUrl" />
+      <div v-for="banner in ads" :key="banner.id" class="col-9 text-center">
+        <Ad :ad="banner" />
       </div>
     </div>
     <div class="row">

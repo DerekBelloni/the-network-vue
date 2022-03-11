@@ -5,7 +5,7 @@ import { api } from "./AxiosService";
 class PostsService {
 
   async getAllPosts() {
-    const res = await api.get('posts')
+    const res = await api.get('api/posts')
     logger.log(res.data)
     AppState.posts = res.data.posts
     logger.log(AppState.posts.body)
