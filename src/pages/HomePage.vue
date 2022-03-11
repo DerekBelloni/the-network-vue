@@ -1,5 +1,10 @@
 <template>
   <div class="container-fluid">
+    <div class="row p-2 m-2 justify-content-center bg-info">
+      <div class="col-9 text-center">
+        <img class="img-fluid" :src="ads.linkUrl" />
+      </div>
+    </div>
     <div class="row">
       <div class="col-2 home p-2 m-0 flex-column bg-success">
         <h2>SideBar</h2>
@@ -20,7 +25,7 @@
         v-for="p in posts"
         :key="p.id"
       >
-        <Posts :posts="p" />
+        <Post :post="p" />
       </div>
     </div>
   </div>
@@ -34,11 +39,13 @@ import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { postsService } from "../services/PostsService";
 import { AppState } from "../AppState";
+import { adsService } from "../services/AdsService";
 export default {
   setup() {
     onMounted(async () => {
       try {
         await postsService.getAllPosts();
+        await adsService.getAds();
       } catch (error) {
         logger.error(error);
         Pop.toast(error.message, "error");
@@ -46,6 +53,7 @@ export default {
     });
     return {
       posts: computed(() => AppState.posts),
+      ads: computed(() => AppState.ads),
     };
   },
 };

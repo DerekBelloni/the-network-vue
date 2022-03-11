@@ -1,6 +1,6 @@
 <template>
-  <div class="row">
-    <h2>{{ posts.creator.name }}</h2>
+  <div class="container">
+    <h2>{{ profile.body }}</h2>
   </div>
 </template>
 
@@ -9,15 +9,9 @@
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
 export default {
-  props: {
-    posts: {
-      type: Object,
-      required: true,
-    },
-  },
   setup() {
     return {
-      posts: computed(() => AppState.posts),
+      profile: computed(() => AppState.activeProfile),
     };
   },
 };
@@ -25,7 +19,4 @@ export default {
 
 
 <style lang="scss" scoped>
-.posts-card {
-  max-height: 25vh;
-}
 </style>
