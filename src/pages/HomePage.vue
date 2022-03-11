@@ -5,6 +5,8 @@
         <Ad :ad="banner" />
       </div>
     </div>
+    <button @click="getOlderPage">Older Page</button>
+    <button @click="getNewerPage">Newer Page</button>
     <div class="row">
       <div class="col-2 home p-2 m-0 flex-column bg-success">
         <h2>SideBar</h2>
@@ -40,6 +42,7 @@ import Pop from "../utils/Pop";
 import { postsService } from "../services/PostsService";
 import { AppState } from "../AppState";
 import { adsService } from "../services/AdsService";
+import { pagesService } from "../services/PagesService";
 export default {
   setup() {
     onMounted(async () => {
@@ -54,6 +57,16 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       ads: computed(() => AppState.ads),
+      currentPage: computed(() => AppState.newerPage),
+      totalPages: computed(() => AppState.olderPage),
+      async getNewerPage() {
+        try {
+          await pagesService.getNewerPage();
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
+      },
     };
   },
 };
