@@ -5,8 +5,8 @@
         <Ad :ad="banner" />
       </div>
     </div>
-    <button @click="getOlderPage">Older Page</button>
     <button @click="getNewerPage">Newer Page</button>
+    <button @click="getOlderPage">Older Page</button>
     <div class="row">
       <div class="col-2 home p-2 m-0 flex-column bg-success">
         <h2>SideBar</h2>
@@ -57,11 +57,20 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       ads: computed(() => AppState.ads),
-      currentPage: computed(() => AppState.newerPage),
-      totalPages: computed(() => AppState.olderPage),
+      newerPage: computed(() => AppState.newerPage),
+      olderPage: computed(() => AppState.olderPage),
       async getNewerPage() {
         try {
           await pagesService.getNewerPage();
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
+      },
+
+      async changePage() {
+        try {
+          await pagesService.getOlderPage();
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");

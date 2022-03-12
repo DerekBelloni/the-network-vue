@@ -2,18 +2,26 @@ import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
 import { api } from "./AxiosService";
 
-const baseQuery = {
-  page: 1,
-  query: ''
-}
+
 
 class PagesService {
-  async getNewerPage() {
-    const res = await api.get('api/posts?page=newer')
-    logger.log('pages retrieved', res.data)
-    AppState.newerPage = res.data
-    logger.log(AppState.newerPage)
+
+  async getOlderPage() {
+    const res = await api.get('api/posts')
+    // logger.log('older pages received', res.data)
+    AppState.olderPage = res.data
+    logger.log('older page', AppState.olderPage)
+    // AppState.posts = AppState.olderPage
   }
+
+  async getNewerPage() {
+    const res = await api.get('api/posts')
+    // logger.log('newer pages retrieved', res.data)
+    AppState.newerPage = res.data
+    logger.log('newer page', AppState.newerPage)
+    // AppState.posts = AppState.newerPage
+  }
+
 }
 
 export const pagesService = new PagesService();
