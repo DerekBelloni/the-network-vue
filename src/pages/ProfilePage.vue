@@ -1,25 +1,33 @@
 <template>
   <div class="container">
-    <CreatePost v-if="account.id == profile.id" />
+    <CreatePost v-if="account.id == profile.creatorId" />
 
-    <!-- Account/Profile ID check -->
     <div
       class="
         col-8
         bg-light
         d-flex
+        flex-column
         shadow
         ms-5
         mt-5
         mb-3
         rounded
         posts-card
-        selectable
       "
       v-for="p in posts"
       :key="p.id"
     >
-      <h6>{{ p.body }}</h6>
+      <!-- <img class="img-fluid" :src="p.imgUrl" alt="" /> -->
+      <div>
+        <h6>{{ p.body }}</h6>
+      </div>
+      <div>
+        <p>{{ p.creatorId }}</p>
+      </div>
+      <div class="d-flex align-items-end justify-content-end">
+        <DeletePost v-if="account.id == profile.creatorId" />
+      </div>
     </div>
   </div>
 </template>
@@ -57,4 +65,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.posts-card {
+  height: 30vh;
+}
 </style>

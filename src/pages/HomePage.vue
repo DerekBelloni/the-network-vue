@@ -5,7 +5,7 @@
         <Ad :ad="banner" />
       </div>
     </div>
-    <CreatePost />
+    <CreatePost v-if="account.id" />
     <button @click="getNewerPage">Newer Page</button>
     <button @click="getOlderPage">Older Page</button>
     <div class="row">
