@@ -7,7 +7,7 @@
       </h2>
       <p>{{ post.creator.name }} | {{ post.creator.class }} |</p>
       <div class="d-flex justify-content-between">
-        <i class="mdi mdi-heart-box-outline heart-icon"></i>
+        <i v-if="account.id" class="mdi mdi-heart-box-outline heart-icon"></i>
         <DeletePost />
         <!-- v-if="account.id == post.creatorId" -->
       </div>

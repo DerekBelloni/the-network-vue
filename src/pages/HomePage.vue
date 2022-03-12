@@ -8,10 +8,10 @@
     <CreatePost v-if="account.id" />
     <button @click="getNewerPage">Newer Page</button>
     <button @click="getOlderPage">Older Page</button>
-    <div class="row">
-      <div class="col-2 home p-2 m-0 flex-column bg-success">
+    <div class="row justify-content-center">
+      <!-- <div class="col-2 home p-2 m-0 flex-column bg-success">
         <h2>SideBar</h2>
-      </div>
+      </div> -->
       <div
         class="
           col-8

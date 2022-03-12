@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <img :src="ad.banner" alt="" />
+  <div class="container ad">
+    <img class="img-fluid" :src="ad.banner" alt="" />
   </div>
 </template>
 
@@ -21,4 +21,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.ad {
+  max-height: 20vh;
+}
 </style>

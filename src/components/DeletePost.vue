@@ -1,14 +1,32 @@
 <template>
   <div>
-    <i class="mdi mdi-delete-circle-outline heart-icon selectable"></i>
+    <i
+      class="mdi mdi-delete-circle-outline heart-icon selectable"
+      @click="deletePost"
+    ></i>
   </div>
 </template>
 
 
 <script>
+import { computed } from "@vue/reactivity";
+import { postsService } from "../services/PostsService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { AppState } from "../AppState";
 export default {
   setup() {
-    return {};
+    return {
+      profilePosts = computed(() => AppState.profilePosts)
+      async deletePost() {
+        try {
+          await postsService.deletePost()
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
+      },
+    };
   },
 };
 </script>
