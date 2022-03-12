@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <CreatePost v-if="account.id == profile.id" />
+
+    <!-- Account/Profile ID check -->
     <div
       class="
         col-8
@@ -37,6 +40,7 @@ export default {
       try {
         logger.log("pulling id from route", route.params);
         await profilesService.getProfilePostsById(route.params.id);
+        await profilesService.getProfileById(route.params.id);
       } catch (error) {
         logger.error(error);
         Pop.toast(error.message, "error");
@@ -45,6 +49,7 @@ export default {
     return {
       profile: computed(() => AppState.activeProfile),
       posts: computed(() => AppState.profilePosts),
+      account: computed(() => AppState.account),
     };
   },
 };

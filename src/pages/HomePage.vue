@@ -5,6 +5,7 @@
         <Ad :ad="banner" />
       </div>
     </div>
+    <CreatePost />
     <button @click="getNewerPage">Newer Page</button>
     <button @click="getOlderPage">Older Page</button>
     <div class="row">
@@ -43,7 +44,9 @@ import { postsService } from "../services/PostsService";
 import { AppState } from "../AppState";
 import { adsService } from "../services/AdsService";
 import { pagesService } from "../services/PagesService";
+import CreatePost from "../components/CreatePost.vue";
 export default {
+  components: { CreatePost },
   setup() {
     onMounted(async () => {
       try {
@@ -59,6 +62,7 @@ export default {
       ads: computed(() => AppState.ads),
       newerPage: computed(() => AppState.newerPage),
       olderPage: computed(() => AppState.olderPage),
+      account: computed(() => AppState.account),
       async getNewerPage() {
         try {
           await pagesService.getNewerPage();

@@ -11,6 +11,12 @@ class PostsService {
     logger.log(AppState.posts.body)
   }
 
+  async createPost(postData) {
+    logger.log('post data', postData)
+    const res = await api.post('api/posts', postData)
+    AppState.posts.unshift(res.data)
+  }
+
 
 }
 
