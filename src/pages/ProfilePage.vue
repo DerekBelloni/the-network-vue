@@ -3,30 +3,24 @@
     <CreatePost v-if="account.id == profile.creatorId" />
 
     <div
-      class="
-        col-8
-        bg-light
-        d-flex
-        flex-column
-        shadow
-        ms-5
-        mt-5
-        mb-3
-        rounded
-        posts-card
-      "
+      class="col-8 bg-light d-flex flex-column shadow ms-5 mt-5 mb-3 rounded"
       v-for="p in posts"
       :key="p.id"
     >
-      <!-- <img class="img-fluid" :src="p.imgUrl" alt="" /> -->
+      <div>
+        <img class="img-fluid" :src="p.imgUrl" alt="" />
+      </div>
       <div>
         <h6>{{ p.body }}</h6>
       </div>
       <div>
-        <p>{{ p.creatorId }}</p>
+        <p>{{ posts.creator.name }}</p>
       </div>
-      <div class="d-flex align-items-end justify-content-end">
-        <DeletePost v-if="account.id == profile.creatorId" />
+      <div class="d-flex justify-content-end">
+        <i
+          class="mdi mdi-delete-forever delete-icon selectable"
+          @click="removePost(p.id)"
+        ></i>
       </div>
     </div>
   </div>
@@ -41,6 +35,7 @@ import { useRoute } from "vue-router";
 import { onMounted } from "@vue/runtime-core";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
+import { postsService } from "../services/PostsService";
 export default {
   setup() {
     const route = useRoute();
@@ -58,6 +53,11 @@ export default {
       profile: computed(() => AppState.activeProfile),
       posts: computed(() => AppState.profilePosts),
       account: computed(() => AppState.account),
+      async removePost() {
+        if (await Pop.confirm("Are you sure?")) {
+          await postsService.removePost(p.id);
+        }
+      },
     };
   },
 };
@@ -65,7 +65,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.posts-card {
-  height: 30vh;
+.delete-icon {
+  font-size: 24px;
 }
 </style>
