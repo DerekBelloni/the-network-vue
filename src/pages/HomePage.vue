@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row p-2 m-2 justify-content-center bg-info">
+    <div class="row m-2 justify-content-center">
       <div
         v-for="banner in ads"
         :key="banner.id"
@@ -31,22 +31,20 @@
     </div>
     <div class="row justify-content-center">
       <div
-        class="
-          col-8
-          bg-light
-          d-flex
-          shadow
-          ms-5
-          mt-5
-          mb-3
-          rounded
-          posts-card
-          selectable
-        "
+        class="col-8 bg-light d-flex shadow ms-5 mt-5 mb-3 rounded posts-card"
         v-for="p in posts"
         :key="p.id"
       >
         <Post :post="p" />
+      </div>
+    </div>
+    <div class="row m-2 justify-content-center">
+      <div
+        v-for="banner in ads"
+        :key="banner.id"
+        class="col-9 d-flex text-center"
+      >
+        <Ad :ad="banner" />
       </div>
     </div>
   </div>

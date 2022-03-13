@@ -8,6 +8,7 @@
         class="form-control"
         id="exampleFormControlTextarea1"
         rows="3"
+        placeholder="Create Post..."
       ></textarea>
     </div>
     <div class="form-group">
@@ -18,6 +19,7 @@
         class="form-control"
         id="exampleFormControlTextarea1"
         rows="1"
+        placeholder="Post an Image..."
       ></textarea>
     </div>
     <button class="btn btn-success m-2">Create</button>

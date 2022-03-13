@@ -1,8 +1,13 @@
 <template>
   <div class="container">
-    <div class="row p-2 m-2 justify-content-center bg-info">
+    <div class="row p-2 m-2 justify-content-center">
       <div v-for="banner in ads" :key="banner.id" class="col-9 text-center">
         <Ad :ad="banner" />
+      </div>
+    </div>
+    <div class="row bg-dark justify-content-center">
+      <div class="col-4 mt-3 mb-0 text-center">
+        <h1>Profile Details</h1>
       </div>
     </div>
     <div class="row">
@@ -11,22 +16,29 @@
       </div>
     </div>
     <div
-      class="col-8 bg-light d-flex flex-column shadow ms-5 mt-5 mb-3 rounded"
+      class="
+        col-8
+        bg-light
+        d-flex
+        flex-column
+        align-items-center
+        justify-content-center
+        shadow
+        ms-2
+        mt-2
+        mb-2
+        rounded
+      "
       v-for="p in posts"
       :key="p.id"
     >
-      <!-- <Post :post="p" /> -->
-      <div>
-        <img class="img-fluid" :src="p.imgUrl" alt="" />
-      </div>
-      <div>
-        <h6>{{ p.body }}</h6>
-      </div>
       <div class="d-flex justify-content-end">
-        <i
-          class="mdi mdi-delete-forever selectable delete-icon"
-          @click="removePost(posts.id)"
-        ></i>
+        <Post :post="p" />
+      </div>
+    </div>
+    <div class="row p-2 m-2 justify-content-center">
+      <div v-for="banner in ads" :key="banner.id" class="col-9 text-center">
+        <Ad :ad="banner" />
       </div>
     </div>
   </div>
@@ -81,5 +93,9 @@ export default {
 <style lang="scss" scoped>
 .delete-icon {
   font-size: 24px;
+}
+
+.ad-card {
+  max-height: 15vh;
 }
 </style>

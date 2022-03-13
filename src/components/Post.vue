@@ -7,7 +7,17 @@
       </h2>
 
       <div class="d-flex justify-content-between">
-        <i v-if="account.id" class="mdi mdi-heart-box-outline heart-icon"></i>
+        <i
+          v-if="account.id"
+          class="mdi mdi-heart-box-outline heart-icon"
+          @click="likePost(post.id)"
+          >{{ post.likes.length }}</i
+        >
+        <p>
+          <b>
+            {{ post.createdAt }}
+          </b>
+        </p>
         <i
           v-if="account.id == post.creatorId"
           class="mdi mdi-delete-forever heart-icon"
@@ -42,6 +52,15 @@ export default {
 
       setActiveProfile() {
         profilesService.setActiveProfile(props.post);
+      },
+
+      async likePost() {
+        try {
+          await postsService.likePost(props.post.id);
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
       },
 
       async removePost() {
