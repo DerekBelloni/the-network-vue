@@ -73,6 +73,15 @@ export default {
           Pop.toast(error.message, "error");
         }
       },
+
+      async convertTimeStamp() {
+        try {
+          await postsService.convertTimeStamp(props.post.createdAt);
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
+      },
     };
   },
 };

@@ -8,7 +8,16 @@ class PostsService {
     const res = await api.get('api/posts')
     logger.log(res.data)
     AppState.posts = res.data.posts
+    AppState.newerPage = res.data.newer
+    AppState.olderPage = res.data.older
     logger.log(AppState.posts.body)
+  }
+
+  async changePage(page) {
+    const res = await api.get(page)
+    AppState.posts = res.data.posts
+    AppState.newerPage = res.data.newer
+    AppState.olderPage = res.data.older
   }
 
   async createPost(postData) {
@@ -35,7 +44,11 @@ class PostsService {
     const res = await api.post('api/posts/' + id + '/like')
     logger.log('[post has been liked!]', res.data.likes)
     AppState.posts = res.data.likes
-    AppState.profilePosts = res.data.likes
+
+  }
+
+  async converTimeStamp(timeStamp) {
+    logger.log('timestamp to be converted!!!', timeStamp)
   }
 
 

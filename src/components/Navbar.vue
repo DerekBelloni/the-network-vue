@@ -23,6 +23,11 @@
     >
       <span class="navbar-toggler-icon" />
     </button>
+    <router-link :to="{ name: 'Profiles', params: { id: account.id } }">
+      <div class="m-2">
+        <button class="btn btn-success">Go to your profile</button>
+      </div>
+    </router-link>
     <div class="collapse navbar-collapse" id="navbarText">
       <span class="navbar-text">
         <button
@@ -90,6 +95,7 @@ export default {
   setup() {
     return {
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup();
       },

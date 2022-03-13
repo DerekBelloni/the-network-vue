@@ -21,10 +21,10 @@
     </div>
     <div class="row">
       <div class="col-4 d-flex justify-content-apart">
-        <button class="btn btn-info" @click="changePage(newer)">
+        <button class="btn btn-info" @click="changePage(newerPage)">
           Newer Page
         </button>
-        <button class="btn btn-info" @click="changePage(older)">
+        <button class="btn btn-info" @click="changePage(olderPage)">
           Older Page
         </button>
       </div>
@@ -59,7 +59,7 @@ import Pop from "../utils/Pop";
 import { postsService } from "../services/PostsService";
 import { AppState } from "../AppState";
 import { adsService } from "../services/AdsService";
-import { pagesService } from "../services/PagesService";
+
 import CreatePost from "../components/CreatePost.vue";
 export default {
   components: { CreatePost },
@@ -68,6 +68,7 @@ export default {
       try {
         await postsService.getAllPosts();
         await adsService.getAds();
+        await postsService.changePage(page);
       } catch (error) {
         logger.error(error);
         Pop.toast(error.message, "error");
@@ -80,18 +81,10 @@ export default {
       olderPage: computed(() => AppState.olderPage),
       account: computed(() => AppState.account),
       activeProfile: computed(() => AppState.activeProfile),
-      async getNewerPage() {
-        try {
-          await pagesService.getNewerPage();
-        } catch (error) {
-          logger.error(error);
-          Pop.toast(error.message, "error");
-        }
-      },
 
       async changePage(page) {
         try {
-          await pagesService.changePage(page);
+          await postsService.changePage(page);
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");
