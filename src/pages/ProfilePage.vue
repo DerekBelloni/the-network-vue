@@ -15,15 +15,19 @@
       v-for="p in posts"
       :key="p.id"
     >
-      <Post :post="p" />
+      <!-- <Post :post="p" /> -->
       <div>
         <img class="img-fluid" :src="p.imgUrl" alt="" />
       </div>
       <div>
         <h6>{{ p.body }}</h6>
       </div>
-      <div></div>
-      <div class="d-flex justify-content-end"></div>
+      <div class="d-flex justify-content-end">
+        <i
+          class="mdi mdi-delete-forever selectable delete-icon"
+          @click="removePost(posts.id)"
+        ></i>
+      </div>
     </div>
   </div>
 </template>
@@ -58,11 +62,16 @@ export default {
       posts: computed(() => AppState.profilePosts),
       account: computed(() => AppState.account),
       ads: computed(() => AppState.ads),
-      // async removePost() {
-      //   if (await Pop.confirm("Are you sure?")) {
-      //     await postsService.removePost(p.id);
-      //   }
-      // },
+      async removePost() {
+        try {
+          if (await Pop.confirm("Are you sure?")) {
+            await postsService.removePost(AppState.posts.id);
+          }
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
+      },
     };
   },
 };

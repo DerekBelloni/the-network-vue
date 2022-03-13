@@ -22,8 +22,11 @@ class PostsService {
     const res = await api.delete('api/posts/' + id)
     AppState.activeProfile = {}
     AppState.posts = AppState.posts.filter(p => p.id != id)
+  }
 
-
+  async getAll() {
+    const res = await api.get('api/posts', { params: query })
+    logger.log('searching posts for', res.data)
   }
 
 

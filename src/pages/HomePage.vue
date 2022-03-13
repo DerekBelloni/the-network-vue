@@ -15,8 +15,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6 p-3">
-        <SearchBar />
+      <div class="col-6 p-3 m-2">
+        <Search />
       </div>
     </div>
     <div class="row">
@@ -81,6 +81,7 @@ export default {
       newerPage: computed(() => AppState.newerPage),
       olderPage: computed(() => AppState.olderPage),
       account: computed(() => AppState.account),
+      activeProfile: computed(() => AppState.activeProfile),
       async getNewerPage() {
         try {
           await pagesService.getNewerPage();
