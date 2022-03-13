@@ -1,17 +1,35 @@
 <template>
   <div class="container-fluid">
     <div class="row p-2 m-2 justify-content-center bg-info">
-      <div v-for="banner in ads" :key="banner.id" class="col-9 text-center">
+      <div
+        v-for="banner in ads"
+        :key="banner.id"
+        class="col-9 d-flex text-center"
+      >
         <Ad :ad="banner" />
       </div>
     </div>
-    <CreatePost v-if="account.id" />
-    <button @click="getNewerPage">Newer Page</button>
-    <button @click="getOlderPage">Older Page</button>
+    <div class="row">
+      <div class="col-12 p-3">
+        <CreatePost v-if="account.id" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 p-3">
+        <SearchBar />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 d-flex justify-content-apart">
+        <button class="btn btn-info" @click="changePage(newer)">
+          Newer Page
+        </button>
+        <button class="btn btn-info" @click="changePage(older)">
+          Older Page
+        </button>
+      </div>
+    </div>
     <div class="row justify-content-center">
-      <!-- <div class="col-2 home p-2 m-0 flex-column bg-success">
-        <h2>SideBar</h2>
-      </div> -->
       <div
         class="
           col-8
@@ -72,9 +90,9 @@ export default {
         }
       },
 
-      async changePage() {
+      async changePage(page) {
         try {
-          await pagesService.getOlderPage();
+          await pagesService.changePage(page);
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");

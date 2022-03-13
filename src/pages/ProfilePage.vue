@@ -1,27 +1,29 @@
 <template>
   <div class="container">
-    <CreatePost v-if="account.id == profile.creatorId" />
-
+    <div class="row p-2 m-2 justify-content-center bg-info">
+      <div v-for="banner in ads" :key="banner.id" class="col-9 text-center">
+        <Ad :ad="banner" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <CreatePost v-if="account.id == profile.creatorId" />
+      </div>
+    </div>
     <div
       class="col-8 bg-light d-flex flex-column shadow ms-5 mt-5 mb-3 rounded"
       v-for="p in posts"
       :key="p.id"
     >
+      <Post :post="p" />
       <div>
         <img class="img-fluid" :src="p.imgUrl" alt="" />
       </div>
       <div>
         <h6>{{ p.body }}</h6>
       </div>
-      <div>
-        <p>{{ posts.creator.name }}</p>
-      </div>
-      <div class="d-flex justify-content-end">
-        <i
-          class="mdi mdi-delete-forever delete-icon selectable"
-          @click="removePost(p.id)"
-        ></i>
-      </div>
+      <div></div>
+      <div class="d-flex justify-content-end"></div>
     </div>
   </div>
 </template>
@@ -36,6 +38,7 @@ import { onMounted } from "@vue/runtime-core";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { postsService } from "../services/PostsService";
+import { adsService } from "../services/AdsService";
 export default {
   setup() {
     const route = useRoute();
@@ -44,6 +47,7 @@ export default {
         logger.log("pulling id from route", route.params);
         await profilesService.getProfilePostsById(route.params.id);
         await profilesService.getProfileById(route.params.id);
+        await adsService.getAds();
       } catch (error) {
         logger.error(error);
         Pop.toast(error.message, "error");
@@ -53,11 +57,12 @@ export default {
       profile: computed(() => AppState.activeProfile),
       posts: computed(() => AppState.profilePosts),
       account: computed(() => AppState.account),
-      async removePost() {
-        if (await Pop.confirm("Are you sure?")) {
-          await postsService.removePost(p.id);
-        }
-      },
+      ads: computed(() => AppState.ads),
+      // async removePost() {
+      //   if (await Pop.confirm("Are you sure?")) {
+      //     await postsService.removePost(p.id);
+      //   }
+      // },
     };
   },
 };

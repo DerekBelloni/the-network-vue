@@ -20,7 +20,7 @@
         rows="1"
       ></textarea>
     </div>
-    <button class="btn btn-success">Create</button>
+    <button class="btn btn-success m-2">Create</button>
   </form>
 </template>
 

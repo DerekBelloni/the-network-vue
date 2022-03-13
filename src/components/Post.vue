@@ -5,11 +5,14 @@
       <h2>
         {{ post.body }}
       </h2>
-      <p>{{ post.creator.name }} | {{ post.creator.class }} |</p>
+
       <div class="d-flex justify-content-between">
         <i v-if="account.id" class="mdi mdi-heart-box-outline heart-icon"></i>
-        <DeletePost />
-        <!-- v-if="account.id == post.creatorId" -->
+        <i
+          v-if="account.id == post.creatorId"
+          class="mdi mdi-delete-forever heart-icon"
+          @click="removePost(post.id)"
+        ></i>
       </div>
     </div>
   </router-link>
@@ -19,8 +22,10 @@
 <script>
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
-import { profilesService } from "../services/ProfilesService";
 import { postsService } from "../services/PostsService";
+import { profilesService } from "../services/ProfilesService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
 export default {
   props: {
     post: {
@@ -32,13 +37,22 @@ export default {
     return {
       account: computed(() => AppState.account),
       activeProfile: computed(() => AppState.activeProfile),
-      // post: computed(() => AppState.posts),
+      posts: computed(() => AppState.posts),
+      profilePosts: computed(() => AppState.profilePosts),
+
       setActiveProfile() {
         profilesService.setActiveProfile(props.post);
       },
 
       async removePost() {
-        postsService.removeProfile();
+        try {
+          if (await Pop.confirm("Are you sure?")) {
+            postsService.removePost(props.post.id);
+          }
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
       },
     };
   },

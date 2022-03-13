@@ -17,6 +17,15 @@ class PostsService {
     AppState.posts.unshift(res.data)
   }
 
+  async removePost(id) {
+    logger.log('post to be removed', id)
+    const res = await api.delete('api/posts/' + id)
+    AppState.activeProfile = {}
+    AppState.posts = AppState.posts.filter(p => p.id != id)
+
+
+  }
+
 
 }
 
