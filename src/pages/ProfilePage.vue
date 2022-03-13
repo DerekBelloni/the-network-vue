@@ -10,7 +10,7 @@
     </div>
     <div class="row container-fluid bg-dark p-2 justify-content-center">
       <div class="col-12 mt-3 mb-0 text-center">
-        <div class="d-flex justify-content-start">
+        <div class="d-flex justify-content-center profile-img">
           <img :src="profile.picture" alt="" class="img-fluid" />
         </div>
         <h1>{{ profile.name }}</h1>
@@ -106,6 +106,11 @@ export default {
 <style lang="scss" scoped>
 .delete-icon {
   font-size: 24px;
+}
+
+.profile-img {
+  max-height: 250px;
+  max-width: 250px;
 }
 
 .ad-card {

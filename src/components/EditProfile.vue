@@ -1,5 +1,5 @@
 <template>
-  <form class="d-flex flex-column p-5 bg-dark">
+  <form class="d-flex flex-column p-5 m-3">
     <label for="">name</label>
     <input v-model="state.editable.name" type="text" />
     <label for="">picture</label>
