@@ -5,10 +5,15 @@
         <Ad :ad="banner" />
       </div>
     </div>
-    <div class="row bg-dark justify-content-center">
-      <div class="col-4 mt-3 mb-0 text-center">
-        <h1>Profile Details</h1>
+    <div class="row container-fluid bg-dark p-2 justify-content-center">
+      <div class="col-12 mt-3 mb-0 text-center">
+        <div class="d-flex justify-content-start">
+          <img :src="profile.picture" alt="" class="img-fluid" />
+        </div>
+        <h1>{{ profile.name }}</h1>
+        <h3>{{ profile.email }}</h3>
       </div>
+      <div></div>
     </div>
     <div class="row">
       <div class="col-12 text-center">
@@ -64,6 +69,7 @@ export default {
         await profilesService.getProfilePostsById(route.params.id);
         await profilesService.getProfileById(route.params.id);
         await adsService.getAds();
+        await postsService.converTimeStamp();
       } catch (error) {
         logger.error(error);
         Pop.toast(error.message, "error");
