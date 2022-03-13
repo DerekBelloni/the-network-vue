@@ -43,9 +43,7 @@
         v-for="banner in ads"
         :key="banner.id"
         class="col-9 d-flex text-center"
-      >
-        <Ad :ad="banner" />
-      </div>
+      ></div>
     </div>
   </div>
 </template>

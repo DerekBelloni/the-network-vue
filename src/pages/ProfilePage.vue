@@ -5,6 +5,9 @@
         <Ad :ad="banner" />
       </div>
     </div>
+    <div class="row">
+      <EditProfile v-if="account.id == profile.id" />
+    </div>
     <div class="row container-fluid bg-dark p-2 justify-content-center">
       <div class="col-12 mt-3 mb-0 text-center">
         <div class="d-flex justify-content-start">
@@ -17,7 +20,7 @@
     </div>
     <div class="row">
       <div class="col-12 text-center">
-        <CreatePost v-if="account.id == profile.creatorId" />
+        <CreatePost v-if="account.id == profile.id" />
       </div>
     </div>
     <div
@@ -42,9 +45,11 @@
       </div>
     </div>
     <div class="row p-2 m-2 justify-content-center">
-      <div v-for="banner in ads" :key="banner.id" class="col-9 text-center">
-        <Ad :ad="banner" />
-      </div>
+      <div
+        v-for="banner in ads"
+        :key="banner.id"
+        class="col-9 text-center"
+      ></div>
     </div>
   </div>
 </template>
@@ -60,7 +65,9 @@ import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { postsService } from "../services/PostsService";
 import { adsService } from "../services/AdsService";
+import EditProfile from "../components/EditProfile.vue";
 export default {
+  components: { EditProfile },
   setup() {
     const route = useRoute();
     onMounted(async () => {

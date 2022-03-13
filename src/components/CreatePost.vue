@@ -41,7 +41,7 @@ export default {
       state,
       async createPost() {
         try {
-          logger.log("editable before service", state.editable);
+          // logger.log("editable before service", state.editable);
           await postsService.createPost(state.editable);
         } catch (error) {
           logger.error(error);
