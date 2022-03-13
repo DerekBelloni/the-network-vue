@@ -18,14 +18,13 @@ import { postsService } from "../services/PostsService";
 import { computed, reactive, onMounted, ref } from "vue";
 export default {
   setup() {
-    const state = reactive({
-      searchTerm: {},
-    });
+    const searchTerm = ref("");
+
     return {
-      state,
+      searchTerm,
       async search() {
         try {
-          await postsService.getAll({ query: state.searchTerm });
+          await postsService.getAll({ query: searchTerm.value });
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");

@@ -24,9 +24,10 @@ class PostsService {
     AppState.posts = AppState.posts.filter(p => p.id != id)
   }
 
-  async getAll() {
+  async getAll(query = {}) {
     const res = await api.get('api/posts', { params: query })
     logger.log('searching posts for', res.data)
+    AppState.posts = res.data.posts
   }
 
 
