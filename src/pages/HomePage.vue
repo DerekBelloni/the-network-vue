@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid bg-body">
-    <div class="row m-2 justify-content-center">
+    <div class="row justify-content-center">
       <div
         v-for="banner in ads"
         :key="banner.id"
@@ -21,10 +21,18 @@
     </div>
     <div class="row">
       <div class="col-4 d-flex justify-content-apart">
-        <button class="btn btn-info" @click="changePage(newerPage)">
+        <button
+          class="btn btn-info m-2"
+          @click="changePage(newerPage)"
+          :class="{ disabled: !newerPage }"
+        >
           Newer Page
         </button>
-        <button class="btn btn-info" @click="changePage(olderPage)">
+        <button
+          v-if="olderPage"
+          class="btn btn-info m-2"
+          @click="changePage(olderPage)"
+        >
           Older Page
         </button>
       </div>
@@ -111,7 +119,9 @@ export default {
     }
   }
 }
-
+.bg-body {
+  background-color: lightgreen;
+}
 .posts-card {
   max-height: 50vh;
 }

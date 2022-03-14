@@ -13,9 +13,9 @@
       </Modal>
     </div>
     <div class="row container-fluid bg-dark p-2 justify-content-center">
-      <div class="col-12 mt-3 mb-0 text-center">
-        <div class="d-flex justify-content-center profile-img">
-          <img :src="profile.picture" alt="" class="img-fluid" />
+      <div class="col-12 mt-3 mb-0 text-center justify-content-center">
+        <div class="d-flex profile-img">
+          <img :src="profile.picture" alt="" class="img-fluid rounded-circle" />
         </div>
         <h1>{{ profile.name }}</h1>
         <h3>{{ profile.email }}</h3>
@@ -39,7 +39,7 @@
       </div>
       <div>
         <b
-          title="Create Car"
+          title="Edit Profile"
           class="
             create-btn
             btn btn-success
@@ -68,7 +68,6 @@
         d-flex
         flex-column
         align-items-center
-        justify-content-center
         shadow
         ms-2
         mt-2
@@ -78,7 +77,7 @@
       v-for="p in posts"
       :key="p.id"
     >
-      <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-center">
         <Post :post="p" />
       </div>
     </div>

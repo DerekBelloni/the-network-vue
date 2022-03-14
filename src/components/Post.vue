@@ -1,10 +1,10 @@
 <template>
   <router-link :to="{ name: 'Profiles', params: { id: post.creatorId } }">
-    <div class="row" @click="setActiveProfile">
-      <img :src="post.imgUrl" class="img-fluid" />
+    <div class="row text-center m-2" @click="setActiveProfile">
       <h2>
         {{ post.body }}
       </h2>
+      <img :src="post.imgUrl" class="img-fluid p-2" />
 
       <div class="d-flex justify-content-between">
         <i
