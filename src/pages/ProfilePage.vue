@@ -51,6 +51,7 @@
       </div>
       <div>
         <b
+          v-if="account.id == profile.id"
           title="Edit Profile"
           class="
             create-btn

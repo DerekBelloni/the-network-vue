@@ -41,6 +41,7 @@ import { logger } from "../utils/Logger";
 import { accountService } from "../services/AccountService";
 import { watchEffect } from "@vue/runtime-core";
 import { AppState } from "../AppState";
+import { Modal } from "bootstrap";
 export default {
   setup() {
     const editable = ref({});
@@ -54,6 +55,9 @@ export default {
         try {
           logger.log("editable before service", editable.value);
           await accountService.editAccount(editable.value);
+          Modal.getOrCreateInstance(
+            document.getElementById("form-modal")
+          ).hide();
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");
