@@ -66,7 +66,6 @@ export default {
       try {
         await postsService.getAllPosts();
         await adsService.getAds();
-        await postsService.changePage(page);
       } catch (error) {
         logger.error(error);
         Pop.toast(error.message, "error");
