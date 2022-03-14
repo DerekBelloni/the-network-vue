@@ -10,7 +10,6 @@
       </div>
     </div>
     <div class="row">
-      <!-- <EditProfile v-if="account.id == profile.id" /> -->
       <Modal>
         <template #modal-title>Edit Profile</template>
         <template #modal-body><EditProfile /></template>
@@ -31,6 +30,8 @@
         <h1>{{ profile.name }}</h1>
         <h3>{{ profile.email }}</h3>
         <h4>{{ profile.bio }}</h4>
+        <h5>{{ profile.class }}</h5>
+        <h5>Graduate: {{ profile.graduated }}</h5>
         <a
           class="mdi mdi-github icon-size"
           target="_blank"

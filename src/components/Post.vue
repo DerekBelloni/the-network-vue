@@ -2,6 +2,9 @@
   <router-link :to="{ name: 'Profiles', params: { id: post.creatorId } }">
     <div class="row text-center m-2" @click="setActiveProfile">
       <h2>
+        {{ post.creator.name }}
+      </h2>
+      <h2>
         {{ post.body }}
       </h2>
       <img :src="post.imgUrl" class="img-fluid p-2" />
@@ -15,7 +18,7 @@
         >
         <p>
           <b>
-            {{ post.createdAt }}
+            {{ Date(post.createdAt) }}
           </b>
         </p>
         <i
@@ -68,15 +71,6 @@ export default {
           if (await Pop.confirm("Are you sure?")) {
             postsService.removePost(props.post.id);
           }
-        } catch (error) {
-          logger.error(error);
-          Pop.toast(error.message, "error");
-        }
-      },
-
-      async convertTimeStamp() {
-        try {
-          await postsService.convertTimeStamp(props.post.createdAt);
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");

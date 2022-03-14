@@ -12,6 +12,15 @@
     />
     <label for="">bio</label>
     <input v-model="editable.bio" type="text" placeholder="bio..." />
+    <label for="">class</label>
+    <input v-model="editable.class" type="text" placeholder="class..." />
+    <label for="">graduated</label>
+    <input
+      v-model="editable.graduated"
+      type="boolean"
+      placeholder="graduated..."
+    />
+
     <label for="">email</label>
     <input v-model="editable.email" type="text" placeholder="email..." />
     <label for="">LinkedIn</label>
