@@ -1,12 +1,16 @@
 <template>
   <div class="container">
     <div class="row p-2 m-2 justify-content-center">
-      <div v-for="banner in ads" :key="banner.id" class="col-9 text-center">
+      <div v-for="banner in ads" :key="banner.id" class="col-4 text-center">
         <Ad :ad="banner" />
       </div>
     </div>
     <div class="row">
-      <EditProfile v-if="account.id == profile.id" />
+      <!-- <EditProfile v-if="account.id == profile.id" /> -->
+      <Modal>
+        <template #modal-title>Edit Profile</template>
+        <template #modal-body><EditProfile /></template>
+      </Modal>
     </div>
     <div class="row container-fluid bg-dark p-2 justify-content-center">
       <div class="col-12 mt-3 mb-0 text-center">
@@ -15,8 +19,42 @@
         </div>
         <h1>{{ profile.name }}</h1>
         <h3>{{ profile.email }}</h3>
+        <h4>{{ profile.bio }}</h4>
+        <a
+          class="mdi mdi-github icon-size"
+          target="_blank"
+          :href="profile.github"
+        ></a>
+        <a
+          class="mdi mdi-linkedin icon-size"
+          target="_blank"
+          :href="profile.linkedin"
+        ></a>
+        <a
+          class="mdi mdi-email icon-size"
+          target="_blank"
+          :href="profile.email"
+        ></a>
+        <i></i>
       </div>
-      <div></div>
+      <div>
+        <b
+          title="Create Car"
+          class="
+            create-btn
+            btn btn-success
+            rounded-pill
+            shadow
+            d-flex
+            align-items-center
+            justify-content-center
+          "
+          data-bs-toggle="modal"
+          data-bs-target="#form-modal"
+        >
+          <i class="mdi mdi-plus"></i>
+        </b>
+      </div>
     </div>
     <div class="row">
       <div class="col-12 text-center">
@@ -115,5 +153,18 @@ export default {
 
 .ad-card {
   max-height: 15vh;
+}
+.create-btn {
+  font-size: 20px;
+  height: 60px;
+  width: 60px;
+
+  position: fixed;
+  bottom: 10vh;
+  right: 5vh;
+}
+
+.icon-size {
+  font-size: 32px;
 }
 </style>

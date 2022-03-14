@@ -1,10 +1,10 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid bg-body">
     <div class="row m-2 justify-content-center">
       <div
         v-for="banner in ads"
         :key="banner.id"
-        class="col-9 d-flex text-center"
+        class="col-4 d-flex text-center"
       >
         <Ad :ad="banner" />
       </div>
@@ -31,7 +31,7 @@
     </div>
     <div class="row justify-content-center">
       <div
-        class="col-8 bg-light d-flex shadow ms-5 mt-5 mb-3 rounded posts-card"
+        class="col-8 bg-light d-flex shadow ms-5 mt-5 mb-3 rounded"
         v-for="p in posts"
         :key="p.id"
       >
@@ -111,5 +111,9 @@ export default {
       object-position: center;
     }
   }
+}
+
+.posts-card {
+  max-height: 50vh;
 }
 </style>

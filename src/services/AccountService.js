@@ -16,6 +16,7 @@ class AccountService {
     const res = await api.put('/account', updatedData)
     logger.log('[updated account!@!@]', res.data)
     AppState.account = res.data
+    AppState.activeProfile = res.data
 
   }
 }
