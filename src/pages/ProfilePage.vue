@@ -72,24 +72,15 @@
         <CreatePost v-if="account.id == profile.id" />
       </div>
     </div>
-    <div
-      class="
-        col-8
-        bg-light
-        d-flex
-        flex-column
-        align-items-center
-        shadow
-        ms-2
-        mt-2
-        mb-2
-        rounded
-      "
-      v-for="p in posts"
-      :key="p.id"
-    >
-      <div class="d-flex justify-content-center">
-        <Post :post="p" />
+    <div class="row justify-content-center">
+      <div
+        class="col-8 bg-light d-flex shadow ms-2 mt-2 mb-2 rounded"
+        v-for="p in posts"
+        :key="p.id"
+      >
+        <div class="d-flex justify-content-center">
+          <Post :post="p" />
+        </div>
       </div>
     </div>
     <div class="row p-2 m-2 justify-content-center">
