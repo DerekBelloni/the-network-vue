@@ -4,6 +4,12 @@
     <input v-model="editable.name" type="text" placeholder="name..." />
     <label for="">picture</label>
     <input v-model="editable.picture" type="text" placeholder="picture..." />
+    <label for="">cover image</label>
+    <input
+      v-model="editable.coverImg"
+      type="text"
+      placeholder="covere image..."
+    />
     <label for="">bio</label>
     <input v-model="editable.bio" type="text" placeholder="bio..." />
     <label for="">email</label>

@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div class="row p-2 m-2 justify-content-center">
-      <div v-for="banner in ads" :key="banner.id" class="col-4 text-center">
+      <div
+        v-for="banner in ads"
+        :key="banner.id"
+        class="col-6 d-flex text-center"
+      >
         <Ad :ad="banner" />
       </div>
     </div>
@@ -12,8 +16,15 @@
         <template #modal-body><EditProfile /></template>
       </Modal>
     </div>
-    <div class="row container-fluid bg-dark p-2 justify-content-center">
-      <div class="col-12 mt-3 mb-0 text-center justify-content-center">
+    <div
+      class="row container-fluid bg-dark p-2 justify-content-center cover-img"
+      :style="{
+        'background-image': `url('${profile.coverImg}')`,
+      }"
+    >
+      <div
+        class="col-12 mt-3 mb-0 text-center justify-content-center cover-img"
+      >
         <div class="d-flex profile-img">
           <img :src="profile.picture" alt="" class="img-fluid rounded-circle" />
         </div>
@@ -165,5 +176,11 @@ export default {
 
 .icon-size {
   font-size: 32px;
+}
+
+.cover-img {
+  background-image: v-bind(coverImg);
+  background-size: cover;
+  background-position: center;
 }
 </style>

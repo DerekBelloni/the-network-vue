@@ -4,7 +4,7 @@
       <div
         v-for="banner in ads"
         :key="banner.id"
-        class="col-4 d-flex text-center"
+        class="col-6 d-flex text-center"
       >
         <Ad :ad="banner" />
       </div>

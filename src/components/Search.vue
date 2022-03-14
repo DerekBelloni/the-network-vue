@@ -6,7 +6,7 @@
       class="col-9"
       placeholder="search...."
     />
-    <button class="btn btn-outline-primary col-3">search</button>
+    <button class="btn btn-outline-primary col-lg-3 col-6">search</button>
   </form>
 </template>
 

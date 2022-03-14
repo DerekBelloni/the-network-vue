@@ -44,6 +44,7 @@ class PostsService {
     const res = await api.post('api/posts/' + id + '/like')
     logger.log('[post has been liked!]', res.data.likes)
     AppState.posts = res.data.likes
+    AppState.activeProfile = res.data.like
 
   }
 
